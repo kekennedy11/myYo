@@ -1,1 +1,34 @@
-<p>This is the about view.</p>
+<script src='https://connect.humanapi.co/connect.js'></script>
+
+<div class="container">
+	<form role="form" ng-submit="addUser()">
+    	<div class="row">
+      		<div class="input-group">
+        		<input type="text" ng-model="user" placeholder="Who's the user" class="form-control">
+        		<span class="input-group-btn">
+          			<input type="submit" class="btn btn-primary" value="Add">
+        		</span>
+	      	</div>
+	   	</div>
+  </form>
+
+	
+
+</div>
+
+<div ui-sortable ng-model="connects">
+    <p class="form-group" ng-repeat="connect in connects">
+      <input type="text" ng-model="connect" class="form-control">
+      
+    </p>
+</div>
+
+<h3> Users </h3>
+<div ui-sortable ng-model="users">
+    <p class="form-group" ng-repeat="user in users" style="padding: 5px 10px; cursor: move;">
+      <input type="text" ng-model="user" class="form-control">
+      
+    </p>
+</div>
+
+<img id='connect-health-data-btn' src='https://connect.humanapi.co/assets/button/blue.png'/>
