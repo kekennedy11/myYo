@@ -33,6 +33,10 @@ angular
         templateUrl: 'views/pictures.html',
         controller: 'PicturesCtrl'
       })
+      .when('/biosensor', {
+        templateUrl: 'views/biosensor.html',
+        controller: 'BiosensorCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

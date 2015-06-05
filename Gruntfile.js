@@ -18,7 +18,9 @@ module.exports = function (grunt) {
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
-    dist: 'dist'
+    dist: 'dist',
+    mobile: 'www',
+    lib: 'bower_components'
   };
 
   // Define the configuration for all the tasks
@@ -146,6 +148,17 @@ module.exports = function (grunt) {
           ]
         }]
       },
+      mobile: {
+        files: [{
+          dot: true,
+          src: [
+            '.tmp',
+            '<%= yeoman.mobile %>/{,*/}*',
+            '<%= yeoman.dist %>/{,*/}*',
+            '!<%= yeoman.dist %>/.git*'
+          ]
+        }]
+      },      
       server: '.tmp'
     },
 
@@ -357,6 +370,27 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>'
         }]
       },
+      mobile: {
+        files: [
+          {
+            expand: true,
+            dot: true,
+            cwd: '<%= yeoman.dist %>',
+            dest: '<%= yeoman.mobile %>',
+            src: [
+                '*.{ico,png,txt}',
+                '*.xml',
+                '.htaccess',
+                '*.html',
+                'views/**/*.html',
+                'images/**/*.{png,jpg,jpeg,gif,webp,svg}',
+                'fonts/*',
+                'styles/*',
+                'scripts/**/*.js'
+            ]
+          }
+        ]
+      },
       styles: {
         expand: true,
         cwd: '<%= yeoman.app %>/styles',
@@ -364,20 +398,30 @@ module.exports = function (grunt) {
         src: '{,*/}*.css'
       }
     },
-
     // Run some tasks in parallel to speed up the build process
     concurrent: {
-      server: [
-        'copy:styles'
-      ],
-      test: [
-        'copy:styles'
-      ],
-      dist: [
-        'copy:styles',
-        'imagemin',
-        'svgmin'
-      ]
+        server: [
+            'copy:styles'
+        ],
+        test: [
+            'copy:styles'
+        ],
+        dist: [
+            'copy:styles',
+            'imagemin',
+            'svgmin'
+        ]
+    },
+
+    compress: {
+        mobile: {
+            options: {
+                mode: 'zip',
+                archive: 'rheumpro.zip'
+            },
+            expand: true,
+            src: ['<%= yeoman.mobile %>/**']
+        }
     },
 
     // Test settings
@@ -386,7 +430,27 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
-    }
+    },
+
+            ngdocs: {
+            options: {
+                dest: 'docs',
+                scripts: [
+                    'bower_components/angular/angular.min.js',
+                    'bower_components/angular-animate/angular-animate.min.js'
+                ],
+                html5Mode: false,
+                startPage: '/api/Readme',
+                styles: [
+                    //'app/styles/main.css'
+                ]
+            },
+            api: {
+                src: ['app/scripts/**/*.js', 'index.ngdoc'],
+                title: 'API Documentation'
+            }
+        }
+
   });
 
 
@@ -417,6 +481,27 @@ module.exports = function (grunt) {
     'autoprefixer',
     'connect:test',
     'karma'
+  ]);
+
+  grunt.registerTask('mobile', [
+      // 'bootstrap',
+      'clean:dist',
+      'clean:mobile',
+      'wiredep',
+      'useminPrepare',
+      'concurrent:dist',
+      'autoprefixer',
+      'concat',
+      'ngAnnotate',
+      'copy:dist',
+      'cdnify',
+      'cssmin',
+      'uglify',
+      'usemin',
+      'htmlmin',
+      'copy:mobile',
+      'compress:mobile',
+      'clean:dist'
   ]);
 
   grunt.registerTask('build', [

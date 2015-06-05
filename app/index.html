@@ -9,6 +9,10 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/videogular-themes-default/videogular.css" />
+    <link rel="stylesheet" href="bower_components/angular-feeds/app/angular-feeds/angular-feeds.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -22,7 +26,7 @@
 
     <!-- Add your site or application content here -->
     <div class="header">
-      <div class="navbar navbar-default" role="navigation">
+      <div class="navbar navbar-inverse" role="navigation">
         <div class="container">
           <div class="navbar-header">
 
@@ -41,20 +45,69 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href="#/">Home</a></li>
               <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
+              <li><a ng-href="#/pictures">Pictures</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
+<!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">-->
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <!-- <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#/">RheumPRO Admin</a>
+    </div>-->
 
+    <!-- Collect the nav links, forms, and other content for toggling -->
+   <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#/">Dashboard <span class="sr-only">(current)</span></a></li>
+        <li><a href="#/">Link</a></li>
+        <li class="dropdown">
+          <a data-target="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#/">Action</a></li>
+            <li><a href="#/">Another action</a></li>
+            <li><a href="#/">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#/">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#/">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="navbar-right">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a data-target="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">LastName, FirstName <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#profile">Profile</a></li>
+              <li class="divider"></li>
+              <li><a href="#addUser" ng-disabled="!isAuthorized('ADMIN')">Add User</a></li>
+              <li class="divider"></li>
+              <li><a ng-click="logoff()">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div> -->
+   <!-- </div>--><!-- /.navbar-collapse -->
+  <!--</div>--><!-- /.container-fluid -->
+<!--</nav> -->
+
+<div class="alert alert-info" role="alert" ng-show="message">message</div>
     <div class="container">
     <div ng-view=""></div>
     </div>
 
     <div class="footer">
       <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
       </div>
     </div>
 
@@ -72,18 +125,24 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
     <script src="bower_components/angular-ui-sortable/sortable.js"></script>
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="bower_components/videogular/videogular.js"></script>
+    <script src="bower_components/angular-feeds/app/angular-feeds/angular-feeds.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -92,6 +151,7 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/pictures.js"></script>
+        <script src="scripts/controllers/biosensor.js"></script>
         <!-- endbuild -->
 </body>
 </html>

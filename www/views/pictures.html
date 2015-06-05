@@ -1,30 +1,14 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Acceleration Example</title>
-
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    <script type="text/javascript" charset="utf-8">
-
-// The watch id references the current `watchAcceleration`
+<!DOCTYPE html> <html> <head> <title>Acceleration Example</title> <script type="text/javascript" charset="utf-8" src="cordova.js"></script> <script type="text/javascript" charset="utf-8">// The watch id references the current `watchAcceleration`
     var watchID = null;
 
     // Wait for device API libraries to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
+
     // device APIs are available
     //
     function onDeviceReady() {
         startWatch();
-        console.log('hey device is ready');
-        var element = document.getElementById('deviceProperties');
-
-        element.innerHTML = 'Device Name: '     + device.name     + '<br />' + 
-                            'Device Cordova: '  + device.cordova + '<br />' + 
-                            'Device Platform: ' + device.platform + '<br />' + 
-                            'Device UUID: '     + device.uuid     + '<br />' + 
-                            'Device Model: '    + device.model     + '<br />' + 
-                            'Device Version: '  + device.version  + '<br />';
     }
 
     // Start watching the acceleration
@@ -65,15 +49,4 @@
     //
     function onError() {
         alert('onError!');
-    }
-
-    </script>
-  </head>
-  <body>
-     <p id="deviceProperties">Loading device properties...</p>
-    <p>getCurrentAcceleration</p>
-    <div id="accelData">
-      Waiting for accelerometer...
-    </div>
-  </body>
-</html>
+    }</script>  <body> <h1>Example</h1> <p>getCurrentAcceleration</p> <div id="accelData"> Waiting for accelerometer... </div>  
